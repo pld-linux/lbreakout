@@ -1,0 +1,18 @@
+--- lbreakout-010315/lbreakout/breakout.cpp.orig	2001-03-15 16:27:33.000000000 +0100
++++ lbreakout-010315/lbreakout/breakout.cpp	2004-02-03 00:33:08.260635488 +0100
+@@ -280,10 +280,14 @@
+     }
+ 
+     //save init //
++    if(cfg_path) {
+     FILE	*f = fopen(cfg_path, "w");
++    if(f) {
+     fwrite(&init_data, sizeof(InitData), 1, f);
+     fclose(f);
+-    if (cfg_path) delete cfg_path;
++    }
++    delete cfg_path;
++    }
+ 
+     if (ss_bricks) SDL_FreeSurface(ss_bricks);
+     if (ss_ball) SDL_FreeSurface(ss_ball);
