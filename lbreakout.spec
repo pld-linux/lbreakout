@@ -6,6 +6,7 @@ Release:	2
 License:	GPL v2+
 Group:		X11/Applications/Games
 Source0:	http://dl.sourceforge.net/lgames/%{name}-%{version}.tar.gz
+# Source0-md5:	0597b94c2c954aa820aa03324a5aaab4
 Source1:	%{name}.desktop
 Patch0:		%{name}-highscore_dir.patch
 URL:		http://lgames.sourceforge.net/
