@@ -1,0 +1,98 @@
+--- lbreakout-010315/lbreakout/breakout.cpp.orig	2004-02-03 00:33:08.000000000 +0100
++++ lbreakout-010315/lbreakout/breakout.cpp	2004-02-03 00:47:00.000191856 +0100
+@@ -3276,7 +3276,7 @@
+ }
+ 
+ // levels //
+-FILE* BreakOut::Levels_OpenFile(char *f_str)
++FILE* BreakOut::Levels_OpenFile(char **f_str)
+ {
+     if (init_data.lvl_path[0] == 0 || init_data.lvl_file[0] == 0) {
+         printf("empty path or file - using original levels\n");
+@@ -3284,24 +3284,31 @@
+         return 0;
+     }
+     if (init_data.lvl_path[0] == '~') {
+-        strcpy(f_str, home_dir);
++	*f_str = (char*)malloc(strlen(home_dir) + strlen(init_data.lvl_path) /* -1 + (optionally) 1 */ + strlen(init_data.lvl_file) + 1);
++	if(*f_str == NULL)
++	    return NULL;
++        strcpy(*f_str, home_dir);
+         if (strlen(init_data.lvl_path) > 1)
+-            strcat(f_str, init_data.lvl_path + 1);
++            strcat(*f_str, init_data.lvl_path + 1);
+     }
+-    else
+-        strcpy(f_str, init_data.lvl_path);
+-    if (f_str[strlen(f_str) - 1] != '/')
+-        strcat(f_str, "/");
+-    strcat(f_str, init_data.lvl_file);
+-    FILE *f = fopen(f_str, "r");
++    else {
++	*f_str = (char*)malloc(strlen(init_data.lvl_path) + 1 + strlen(init_data.lvl_file) + 1);
++	if(*f_str == NULL)
++	    return NULL;
++        strcpy(*f_str, init_data.lvl_path);
++    }
++    if ((*f_str)[strlen(*f_str) - 1] != '/')
++        strcat(*f_str, "/");
++    strcat(*f_str, init_data.lvl_file);
++    FILE *f = fopen(*f_str, "r");
+     return f;
+ }
+ 
+ void BreakOut::Levels_LoadFromFile()
+ {
+-    char f_str[64];
++    char *f_str;
+     FILE *f;
+-    if ((f = Levels_OpenFile(f_str)) == 0) {
++    if ((f = Levels_OpenFile(&f_str)) == 0) {
+         // not found; switch back to original levels
+         printf("cannot find '%s' - using original levels\n", f_str);
+         UseOrigLevels();
+@@ -3318,6 +3325,8 @@
+         }
+         fclose(f);
+     }
++    if(f_str != NULL)
++	free(f_str);
+ }
+ 
+ char* BreakOut::NextLine(char *buf, char *cp, char *l)
+--- lbreakout-010315/lbreakout/game.cpp.orig	2001-03-11 17:53:45.000000000 +0100
++++ lbreakout-010315/lbreakout/game.cpp	2004-02-03 00:36:59.901420736 +0100
+@@ -398,16 +398,19 @@
+         mm->GetMenu(6)->Item(1)->SetRange(0, LEVEL_NUM - 1, 5, rep);
+         return;
+     }
+-    char str[256];
++    char *str;
+     FILE *f;
+-    if ((f = breakout->Levels_OpenFile(str)) == 0) {
++    if ((f = breakout->Levels_OpenFile(&str)) == 0) {
+         mm->GetMenu(6)->Item(7)->SetString("(not found)", rep);
+         mm->GetMenu(6)->Item(1)->SetRange(0, LEVEL_NUM - 1, 5, rep);
++	if(str)
++	    free(str);
+         return;
+     }
+     else
+         mm->GetMenu(6)->Item(7)->SetString("(found)", rep);
+-
++    if(str)
++	free(str);
+ 
+     int lev_num = 0;
+     char *cur_pos;
+--- lbreakout-010315/lbreakout/breakout.h.orig	2000-11-04 13:35:32.000000000 +0100
++++ lbreakout-010315/lbreakout/breakout.h	2004-02-03 00:35:54.740326728 +0100
+@@ -276,7 +276,7 @@
+     // corner //
+     void Corner_Check(Corner *c, float v_x, float v_y);
+     // levels //
+-    FILE* Levels_OpenFile(char *str);
++    FILE* Levels_OpenFile(char **str);
+     void Levels_LoadFromFile();
+     int  Levels_ParseFile(FILE *f);
+     void Levels_Delete();
