@@ -36,7 +36,7 @@ rm -f missing
 aclocal
 autoconf
 automake -a -c
-%configure 
+%configure
 %{__make}
 
 %install
@@ -53,8 +53,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc lbreakout/manual 
+%doc lbreakout/manual
 %attr(2755,root,games) %{_bindir}/lbreakout
-%{_datadir}/games/lbreakout 
+%{_datadir}/games/lbreakout
 %attr(664,root,games) %config(noreplace) %verify(not mtime md5 size) %{_localstatedir}/games/lbreakout*
 %{_applnkdir}/Games/*
