@@ -1,9 +1,10 @@
 [Desktop Entry]
 Name=LBreakout
-Comment=Breakout-style aracade game
+Comment=Breakout-style arcade game
 Comment[pl]=Gra zręcznościowa w stylu breakout
 Exec=lbreakout
 Terminal=false
 Type=Application
 Encoding=UTF-8
+Categories=Game;ArcadeGame;
 # vi: encoding=utf-8
