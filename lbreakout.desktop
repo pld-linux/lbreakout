@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=LBreakout
 Comment=Breakout-style aracade game
-Comment[pl]=Gra arkadowa w stylu breakout
+Comment[pl]=Gra zręcznościowa w stylu breakout
 Exec=lbreakout
 Terminal=0
 Type=Application
