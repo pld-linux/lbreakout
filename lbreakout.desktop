@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=LBreakout
+Comment=Breakout-style aracade game
+Exec=lbreakout
+Terminal=0
+Type=Application
