@@ -2,10 +2,10 @@ Summary:	Breakout-style aracade game using SDL
 Summary(pl):	Gra w stylu Breakout u¿ywaj±ca SDL
 Name:		lbreakout
 Version:	010315
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications/Games
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/lgames/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/lgames/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Patch0:		%{name}-highscore_dir.patch
 URL:		http://lgames.sourceforge.net/
