@@ -2,13 +2,15 @@ Summary:	Breakout-style aracade game using SDL
 Summary(pl):	Gra w stylu Breakout u¿ywaj±ca SDL
 Name:		lbreakout
 Version:	010315
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		X11/Applications/Games
 Source0:	http://dl.sourceforge.net/lgames/%{name}-%{version}.tar.gz
 # Source0-md5:	0597b94c2c954aa820aa03324a5aaab4
 Source1:	%{name}.desktop
 Patch0:		%{name}-highscore_dir.patch
+Patch1:		%{name}-segv.patch
+Patch2:		%{name}-security.patch
 URL:		http://lgames.sourceforge.net/
 BuildRequires:	SDL-devel
 BuildRequires:	autoconf
@@ -30,23 +32,25 @@ Mo¿na graæ mysz± lub klawiatur± oraz tworzyæ w³asne poziomy.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
-rm -f missing
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games,%{_localstatedir}/games}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_localstatedir}/games}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -57,4 +61,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(2755,root,games) %{_bindir}/lbreakout
 %{_datadir}/games/lbreakout
 %attr(664,root,games) %config(noreplace) %verify(not mtime md5 size) %{_localstatedir}/games/lbreakout*
-%{_applnkdir}/Games/*
+%{_desktopdir}/*
