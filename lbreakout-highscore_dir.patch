@@ -1,0 +1,24 @@
+diff -durN lbreakout-001104.orig/configure lbreakout-001104/configure
+--- lbreakout-001104.orig/configure	Sat Nov  4 13:48:22 2000
++++ lbreakout-001104/configure	Sun Nov 26 17:00:35 2000
+@@ -1784,7 +1784,7 @@
+ 
+ 
+ sdir=$datadir/games/lbreakout
+-hdir=/var/lib/games
++hdir=/var/games
+ inst_flag="-DSRC_DIR=\\\"$sdir/\\\""
+ hi_inst_flag="-DHI_DIR=\\\"$hdir/\\\""
+ 
+diff -durN lbreakout-001104.orig/configure.in lbreakout-001104/configure.in
+--- lbreakout-001104.orig/configure.in	Sat Nov  4 13:04:36 2000
++++ lbreakout-001104/configure.in	Sun Nov 26 17:00:23 2000
+@@ -52,7 +52,7 @@
+ 
+ dnl installation path
+ sdir=$datadir/games/lbreakout
+-hdir=/var/lib/games
++hdir=/var/games
+ inst_flag="-DSRC_DIR=\\\"$sdir/\\\""
+ hi_inst_flag="-DHI_DIR=\\\"$hdir/\\\""
+ 
