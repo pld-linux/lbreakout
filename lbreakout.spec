@@ -1,13 +1,13 @@
 Summary:	Breakout-style aracade game using SDL
 Name:		lbreakout
-Version:	001014
+Version:	001104
 Release:	1
 License:	GPL
 Group:		X11/Games
 Group(pl):	X11/Gry
 Source0:	http://download.sourceforge.net/lgames/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
-Patch0:		%{name}-DESTDIR.patch
+Patch0:		%{name}-highscore_dir.patch
 URL:		http://lgames.sourceforge.net
 BuildRequires:	SDL-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -23,7 +23,6 @@ own levels.
 
 %prep
 %setup -q
-
 %patch0 -p1
 
 %build
@@ -32,7 +31,7 @@ own levels.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Games
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games,%{_localstatedir}/games}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -47,6 +46,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc lbreakout/manual 
 %attr(2755,root,games) %{_bindir}/lbreakout
 %{_datadir}/games/lbreakout 
-%dir %attr(750,root,games) %{_localstatedir}/games/lbreakout
-%attr(664,root,games) %config(noreplace) %verify(not mtime md5 size) %{_localstatedir}/games/lbreakout/highscore
+%attr(664,root,games) %config(noreplace) %verify(not mtime md5 size) %{_localstatedir}/games/lbreakout*
 %{_applnkdir}/Games/*
