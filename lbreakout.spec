@@ -1,17 +1,18 @@
 Summary:	Breakout-style aracade game using SDL
 Summary(pl):	Gra w stylu Breakout u¿ywaj±ca SDL
 Name:		lbreakout
-Version:	001104
-Release:	3
-License:	GPL
+Version:	010315
+Release:	1
+License:	GPL v2+
 Group:		X11/Applications/Games
-Source0:	http://download.sourceforge.net/lgames/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/lgames/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Patch0:		%{name}-highscore_dir.patch
-URL:		http://lgames.sourceforge.net
+URL:		http://lgames.sourceforge.net/
 BuildRequires:	SDL-devel
-BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -53,7 +54,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc lbreakout/manual
+%doc AUTHORS ChangeLog README lbreakout/manual
 %attr(2755,root,games) %{_bindir}/lbreakout
 %{_datadir}/games/lbreakout
 %attr(664,root,games) %config(noreplace) %verify(not mtime md5 size) %{_localstatedir}/games/lbreakout*
