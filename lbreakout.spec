@@ -1,11 +1,12 @@
 Summary:	Breakout-style aracade game using SDL
-Summary:	Gra w stylu Breakout u¿ywaj±ca SDL
+Summary(pl):	Gra w stylu Breakout u¿ywaj±ca SDL
 Name:		lbreakout
 Version:	001104
-Release:	2
+Release:	3
 License:	GPL
-Group:		X11/Games
-Group(pl):	X11/Gry
+Group:		X11/Applications/Games
+Group(de):	X11/Applikationen/Spiele
+Group(pl):	X11/Aplikacje/Gry
 Source0:	http://download.sourceforge.net/lgames/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Patch0:		%{name}-highscore_dir.patch
@@ -23,6 +24,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 LBreakout is a breakout game with nice graphics, effects and sound.
 You can play it either with mouse or keyboard and you can create your
 own levels.
+
+%description -l pl
+LBreakout to gra breakout z przyjemn± grafik±, efektami i d¼wiêkiem.
+Mo¿na graæ mysz± lub klawiatur± oraz tworzyæ w³asne poziomy.
 
 %prep
 %setup -q
