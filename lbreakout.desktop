@@ -4,3 +4,4 @@ Comment=Breakout-style aracade game
 Exec=lbreakout
 Terminal=0
 Type=Application
+# vi: encoding=utf-8
