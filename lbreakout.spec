@@ -1,7 +1,8 @@
 Summary:	Breakout-style aracade game using SDL
+Summary:	Gra w stylu Breakout u¿ywaj±ca SDL
 Name:		lbreakout
 Version:	001104
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Games
 Group(pl):	X11/Gry
@@ -10,6 +11,8 @@ Source1:	%{name}.desktop
 Patch0:		%{name}-highscore_dir.patch
 URL:		http://lgames.sourceforge.net
 BuildRequires:	SDL-devel
+BuildRequires:	automake
+BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -26,6 +29,10 @@ own levels.
 %patch0 -p1
 
 %build
+rm -f missing
+aclocal
+autoconf
+automake -a -c
 %configure 
 %{__make}
 
