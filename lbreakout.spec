@@ -61,4 +61,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(2755,root,games) %{_bindir}/lbreakout
 %{_datadir}/games/lbreakout
 %attr(664,root,games) %config(noreplace) %verify(not md5 mtime size) %{_localstatedir}/games/lbreakout*
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
