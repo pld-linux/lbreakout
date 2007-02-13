@@ -1,5 +1,5 @@
 Summary:	Breakout-style aracade game using SDL
-Summary(pl.UTF-8):   Gra w stylu Breakout używająca SDL
+Summary(pl.UTF-8):	Gra w stylu Breakout używająca SDL
 Name:		lbreakout
 Version:	010315
 Release:	3
