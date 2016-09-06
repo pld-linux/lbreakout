@@ -5,13 +5,13 @@ Version:	010315
 Release:	3
 License:	GPL v2+
 Group:		X11/Applications/Games
-Source0:	http://dl.sourceforge.net/lgames/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/lgames/%{name}-%{version}.tar.gz
 # Source0-md5:	0597b94c2c954aa820aa03324a5aaab4
 Source1:	%{name}.desktop
 Patch0:		%{name}-highscore_dir.patch
 Patch1:		%{name}-segv.patch
 Patch2:		%{name}-security.patch
-URL:		http://lgames.sourceforge.net/
+URL:		http://lgames.sourceforge.net/LBreakout
 BuildRequires:	SDL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -61,4 +61,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(2755,root,games) %{_bindir}/lbreakout
 %{_datadir}/games/lbreakout
 %attr(664,root,games) %config(noreplace) %verify(not md5 mtime size) %{_localstatedir}/games/lbreakout*
-%{_desktopdir}/*.desktop
+%{_desktopdir}/lbreakout.desktop
