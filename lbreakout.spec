@@ -60,5 +60,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README lbreakout/manual
 %attr(2755,root,games) %{_bindir}/lbreakout
 %{_datadir}/games/lbreakout
-%attr(664,root,games) %config(noreplace) %verify(not md5 mtime size) %{_localstatedir}/games/lbreakout*
+%attr(664,root,games) %config(noreplace) %verify(not md5 mtime size) %{_localstatedir}/games/lbreakout.hscr
 %{_desktopdir}/lbreakout.desktop
